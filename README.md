@@ -1,7 +1,5 @@
 # Embuche - Anti-reverse compilation
 
-**TODO**: Changer repo dans [Installation](./README.md#installation) quand repo independant
-
 <p align="center">
   <img src="./docs/img/logo.png">
 </p>
@@ -86,7 +84,7 @@ If the previous requirements are installed, you can clone this repo.
 
 ```bash
 mkdir embuche && cd embuche
-git clone git@github.com:Bookieman/Embuche.git .
+git clone git@github.com:magnussen7/Embuche.git .
 ```
 
 You'll need the python project [Hellf](https://github.com/0xswitch/Hellf).
