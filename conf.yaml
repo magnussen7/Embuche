@@ -1,0 +1,47 @@
+source_code: "./example/crackme/src/crackme.c"
+files:
+  - "anti_debug.c"
+options:
+  compilation_options:
+    strip:
+      description: "Remove .symtab section (symbols on disk)"
+      value: false
+    symbols_hidden:
+      description: "Hide .dynsym section (symbols at runtime)"
+      value: false
+    optimize:
+      description: "Optimize code (O3)"
+      value: false
+    unroll_loops:
+      description: "Unroll loop structure"
+      value: false
+    static:
+      description: "Use static dependencies (musl)"
+      value: false
+    custom:
+      description: "Add custom GCC flags"
+      value:
+        - "fstack-protector-all"
+  file_format:
+    endianness:
+      description: "Switch endianness to big endian"
+      value: false
+    remove_section_header:
+      description: "Remove section header"
+      value: false
+    flip_sections_flags:
+      description: "Flip sections flags (RX to RW & RW to RX)"
+      value: false
+    hide_entry_point:
+      description: "Hide entry point with fake oversized section"
+      value: false
+    mixing_symbols:
+      description: "Mix the name of symbols in .dynsym"
+      value: false
+  packer:
+    packer:
+      description: "Cipher the final binary and insert it in a program that will unciphered it at start."
+      value: false
+    packer_embuche:
+      description: "Modify the packed binary with: endianness, remove_section_header, flip_sections_flags and hide_entry_point"
+      value: false

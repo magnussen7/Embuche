@@ -1,0 +1,1 @@
+/usr/bin/cc -Wall -Wextra -Wshadow -g0 -fstack-protector-all -std=gnu11  -rdynamic CMakeFiles/crackme.dir/src/crackme.c.o CMakeFiles/crackme.dir/src/anti_debug.c.o  -o ../bin/crackme 

@@ -1,0 +1,47 @@
+# Configuration
+
+- **source_code**: The path to your main program (*Mandatory*, String).
+- **files**: The list of files needed by your program (*Optionnal*, List).
+- **options**: The list of all the options you want to use (*Optionnal*, List of Dictionnary).
+  - **compilation_options**: The list of GCC options you want to use (*Optionnal*, Dictionnary).
+    - **strip**: Strip the program with GCC (`-s`) (*Optionnal*).
+      - **description**: String (*Optionnal*)
+      - **value**: Boolean (*Mandatory*)
+    - **symbols_hidden**: Hide the symbol table with GCC (`-fvisibility=hidden`) (*Optionnal*).
+      - **description**: String (*Optionnal*)
+      - **value**: Boolean (*Mandatory*)
+    - **optimize**: Optimize the code with GCC (`-O3`) (*Optionnal*).
+      - **description**: String (*Optionnal*)
+      - **value**: Boolean (*Mandatory*)
+    - **unroll_loops**: Undo loop structures with GCC (`-funroll-all-loops`) (*Optionnal*).
+      - **description**: String (*Optionnal*)
+      - **value**: Boolean (*Mandatory*)
+    - **static**: Prevents linking with shared libraries (`-static`, compile with *musl*) (*Optionnal*).
+      - **description**: String (*Optionnal*)
+      - **value**: Boolean (*Mandatory*)
+    - **custom**: Add custom GCC flags (*Optionnal*).
+      - **description**: String (*Optionnal*)
+      - **value**: List
+  - **file_format**: The list of file format hacks you want to use (*Optionnal*, Dictionnary).
+    - **endianness**: Change the endianness in the ELF header from little to big endian (*Optionnal*).
+        - **description**: String (*Optionnal*)
+        - **value**: Boolean (*Mandatory*)
+    - **remove_section_header**: Modify the section header table to hide section (*Optionnal*).
+        - **description**: String (*Optionnal*)
+        - **value**: Boolean (*Mandatory*)
+    - **flip_sections_flags**: Create a fake *.text* section with *RX* instead of *RW* and fake *.data* section with *RW* instead of *RX* (*Optionnal*).
+        - **description**: String (*Optionnal*)
+        - **value**: Boolean (*Mandatory*)
+    - **hide_entry_point**: Create a fake *.data* section that override the entry point. (*Optionnal*).
+        - **description**: String (*Optionnal*)
+        - **value**: Boolean (*Mandatory*)
+    - **mixing_symbols**: Create fake *.dynsym* section and mix symbols names. (*Optionnal*).
+        - **description**: String (*Optionnal*)
+        - **value**: Boolean (*Mandatory*)
+  - **packer**: Use the packer and use some file format techniques on it (*Optionnal*, Dictionnary).
+    - **packer**: Use the metamorphic packer (*Optionnal*).
+      - **description**: String (*Optionnal*)
+      - **value**: Boolean (*Mandatory*)
+    - **packer_embuche**: Modify the binary after it has been packed with endianness, remove_section_header, flip_sections_flags and hide_entry_point techniques. (*Optionnal*).
+      - **description**: String (*Optionnal*)
+      - **value**: Boolean (*Mandatory*)

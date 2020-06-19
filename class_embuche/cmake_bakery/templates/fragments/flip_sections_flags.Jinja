@@ -1,0 +1,3 @@
+add_custom_command(TARGET ${PROJECT_NAME}
+                  POST_BUILD
+                  COMMAND python3.8 ${hellf_script_path}/flip_sections_flags.py ${EXECUTABLE_OUTPUT_PATH}/${PROJECT_NAME})

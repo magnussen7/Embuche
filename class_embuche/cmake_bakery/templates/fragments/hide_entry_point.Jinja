@@ -1,0 +1,3 @@
+add_custom_command(TARGET ${PROJECT_NAME}
+                  POST_BUILD
+                  COMMAND python3.8 ${hellf_script_path}/hide_entry_point.py ${EXECUTABLE_OUTPUT_PATH}/${PROJECT_NAME})

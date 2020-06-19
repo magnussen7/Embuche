@@ -1,0 +1,30 @@
+project({{ values.project_name }})
+cmake_minimum_required(VERSION 3.0)
+
+set(EXECUTABLE_OUTPUT_PATH "../bin")
+set(hellf_script_path {{ values.hellf_script_path }})
+
+{% if values.options.compilation_options.static.value %}
+set(CMAKE_C_COMPILER musl-gcc)
+{% endif %}
+
+set(CMAKE_C_FLAGS "-Wall -Wextra -Wshadow -g0 {% if values.options.compilation_options.strip.value %}-s {% endif %}{% if values.options.compilation_options.symbols_hidden.value %}-fvisibility=hidden {% endif %}{% if values.options.compilation_options.optimize.value %}-O3 {% endif %}{% if values.options.compilation_options.unroll_loops.value %}-funroll-all-loops {% endif %}{% if values.options.compilation_options.static.value %}-static {% endif %}{% if 'custom' in values.options.compilation_options %}{% for flag in values.options.compilation_options.custom.value %}-{{ flag }} {% endfor %}{% endif %}-std=gnu11")
+
+add_executable(${PROJECT_NAME} src/${PROJECT_NAME}.c {% for file in values.files %}src/{{ file }} {% endfor %})
+
+{% if values.options.file_format.remove_section_header.value %}
+  {% include "fragments/remove_section_header.Jinja" %}
+
+  {% if values.options.file_format.flip_sections_flags.value and values.options.file_format.hide_entry_point.value %}
+    {% include "fragments/flip_sections_flags_and_hide_entry_point.Jinja" %}
+  {% elif values.options.file_format.flip_sections_flags.value %}
+    {% include "fragments/flip_sections_flags.Jinja" %}
+  {% elif values.options.file_format.hide_entry_point.value %}
+    {% include "fragments/hide_entry_point.Jinja" %}
+  {% endif %}
+
+{% elif values.options.file_format.mixing_symbols.value %}
+  {% include "fragments/mixing_symbols.Jinja" %}
+{% endif %}
+
+{% include "fragments/endianness.Jinja" %}

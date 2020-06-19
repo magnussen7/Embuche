@@ -1,0 +1,7 @@
+{% if values.options.file_format.endianness.value %}
+
+add_custom_command(TARGET ${PROJECT_NAME}
+                  POST_BUILD
+                  COMMAND python3.8 ${hellf_script_path}/endianness_changer.py ${EXECUTABLE_OUTPUT_PATH}/${PROJECT_NAME})
+
+{% endif %}
