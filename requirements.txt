@@ -1,5 +1,5 @@
 pyOpenSSL==19.1.0
-Jinja2==2.11.2
+Jinja2==2.11.3
 huepy==1.2.1
 pycryptodome==3.9.7
 PyYAML==5.3.1
